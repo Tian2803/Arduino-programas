@@ -3,7 +3,7 @@ int pwm = 120;      //speed that the motor follows
 int vl = pwm + 10;  //acceleration
 int vh = pwm - 30;  //deceleration
 
-#define left A3 // Cambiar este por A0 
+#define left A3
 #define right A1
 
 AF_DCMotor motorL(2, MOTOR12_1KHZ);
