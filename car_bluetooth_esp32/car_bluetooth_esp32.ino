@@ -7,19 +7,16 @@ const int int2 = 14;
 const int int3 = 27;
 const int int4 = 26;
 
-const int speed = 250;  // Velocidad constante de los motores (valor PWM)                         
+//const int speed = 250;  // Velocidad constante de los motores (valor PWM)                         
 
 void setup() {
-  Serial.begin(115200);              // Inicia la comunicación serie para la consola
-  SerialBT.begin("CarroBluetooth");  // Nombre del dispositivo Bluetooth
+  SerialBT.begin("Meteoro");  // Nombre del dispositivo Bluetooth
   pinMode(int1, OUTPUT);
   pinMode(int2, OUTPUT);
   pinMode(int3, OUTPUT);
   pinMode(int4, OUTPUT);
-  digitalWrite(int1, LOW);
-  digitalWrite(int2, LOW);
-  digitalWrite(int3, LOW);
-  digitalWrite(int4, LOW);
+  stop();
+  Serial.begin(115200);              // Inicia la comunicación serie para la consola
 }
 
 void loop() {

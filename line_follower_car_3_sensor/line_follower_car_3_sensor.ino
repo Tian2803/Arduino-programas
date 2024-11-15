@@ -1,14 +1,14 @@
 #include <AFMotor.h>
-int pwm = 105;      //speed that the motor follows
-int vl = pwm + 1;  //acceleration
-int vh = pwm - 40;  //deceleration
+int pwm = 110;      //speed that the motor follows
+int vl = pwm;  //acceleration
+int vh = pwm - 30;  //deceleration
 
 #define left A0
 #define medium A1
 #define right A2
 
-AF_DCMotor motorL(1, MOTOR12_1KHZ);    //1
-AF_DCMotor motorD(3, MOTOR12_1KHZ);  //3
+AF_DCMotor motorL(2, MOTOR12_1KHZ);    //1
+AF_DCMotor motorD(4, MOTOR34_1KHZ);  //3
 
 void setup() {
   pinMode(left, INPUT);
@@ -21,34 +21,27 @@ void loop() {
   int valueMedium = digitalRead(medium);
   int valueRight = digitalRead(right);
 
-  if ((valueLeft == 0 && valueMedium == 0 && valueRight == 0) && (valueLeft == 1 && valueMedium == 0 && valueRight == 1)) {
-    motorL.run(BACKWARD);
+  if (valueMedium == 1 || (valueLeft == 0 && valueRight == 0)) {
+    motorL.run(FORWARD);
     motorL.setSpeed(pwm);
-    motorD.run(BACKWARD);
+    motorD.run(FORWARD);
     motorD.setSpeed(pwm);
   }
 
   //line detected by right sensor
-  if (valueLeft == 1 && valueMedium == 1 && valueRight == 0) {
+  if (valueLeft == 0 && valueMedium == 0 && valueRight == 1) {
     //turn rigth
-    motorL.run(BACKWARD);
+    motorL.run(FORWARD);
     motorL.setSpeed(vl);
-    motorD.run(FORWARD);
+    motorD.run(BACKWARD);
     motorD.setSpeed(vh);
   }
   //line detected by left sensor
-  if (valueLeft == 0 && valueMedium == 1 && valueRight == 1) {
+  if (valueLeft == 1 && valueMedium == 0 && valueRight == 0) {
     //turn left
-    motorL.run(FORWARD);
-    motorL.setSpeed(vh);
-    motorD.run(BACKWARD);
-    motorD.setSpeed(vl);
-  }
-  //line detected by none
-  if (valueLeft == 1 && valueMedium == 1 && valueRight == 1) {
     motorL.run(BACKWARD);
-    motorL.setSpeed(pwm);
-    motorD.run(BACKWARD);
-    motorD.setSpeed(pwm);
+    motorL.setSpeed(vh);
+    motorD.run(FORWARD);
+    motorD.setSpeed(vl);
   }
 }

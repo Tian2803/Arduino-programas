@@ -1,10 +1,10 @@
 #include <AFMotor.h>
 int pwm = 120;      //speed that the motor follows
 int vl = pwm + 10;  //acceleration
-int vh = pwm - 30;  //deceleration
+int vh = pwm - 20;  //deceleration
 
-#define left A3
-#define right A1
+#define left A1
+#define right A0
 
 AF_DCMotor motorL(2, MOTOR12_1KHZ);
 AF_DCMotor motorD(4, MOTOR34_1KHZ);
