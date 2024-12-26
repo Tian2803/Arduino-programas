@@ -1,7 +1,7 @@
 #include <AFMotor.h>
-int pwm = 120;      //speed that the motor follows
-int vl = pwm + 10;  //acceleration
-int vh = pwm - 20;  //deceleration
+int speed = 170;      //Velocidad inicial
+int vh = speed + 30; //Aceleracion
+int vl = 0;  //Desaceleración de un motor
 
 #define left A1
 #define right A0
@@ -20,30 +20,31 @@ void loop() {
 
   if (valueLeft == 0 && valueRight == 0) {
     motorL.run(FORWARD);
-    motorL.setSpeed(pwm);
+    motorL.setSpeed(speed);
     motorD.run(FORWARD);
-    motorD.setSpeed(pwm);
+    motorD.setSpeed(speed);
   }
 
   //line detected by right sensor
   if (valueLeft == 0 && valueRight == 1) {
     //turn rigth
-    motorL.run(BACKWARD);
+    motorL.run(FORWARD);
     motorL.setSpeed(vh);
-    motorD.run(FORWARD);
+    motorD.run(RELEASE);
     motorD.setSpeed(vl);
   }
   //line detected by left sensor
   if (valueLeft == 1 && valueRight == 0) {
     //turn left
-    motorL.run(FORWARD);
+    motorL.run(RELEASE);
     motorL.setSpeed(vl);
-    motorD.run(BACKWARD);
+    motorD.run(FORWARD);
     motorD.setSpeed(vh);
   }
-  //line detected by none
+  
+  /* //line detected by none
   if (valueLeft == 1 && valueRight == 1) {
     motorL.run(RELEASE);
     motorD.run(RELEASE);
-  }
+  } */
 }

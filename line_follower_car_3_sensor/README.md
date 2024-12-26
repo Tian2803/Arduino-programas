@@ -1,7 +1,5 @@
 # Carro seguidor de linea
 
-Short de funcionamiento del carro seguidor de linea [Seguidor de linea](https://youtube.com/shorts/lsHlcd1L3ZU?feature=share)
-
 ## Materiales
 - Arduino uno
 - Placa de expansión arduino uno - Motor shield
@@ -12,5 +10,5 @@ Short de funcionamiento del carro seguidor de linea [Seguidor de linea](https://
 - 2 ruedas de gomas
 - Chasis 2wd
 - jumpers hembra-hembra y macho-hembra 
-- 2 sensores infrarrojos tcrt5000
+- 3 sensores infrarrojos tcrt5000
 - 1 rueda loca pequeña

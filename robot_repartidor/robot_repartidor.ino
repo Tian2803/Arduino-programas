@@ -7,11 +7,11 @@
 
 NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); 
 
-#define IR_IZQUIERDO A3  // Sensor izquierdo
-#define IR_DERECHO   A2  // Sensor derecho
+#define IR_IZQUIERDO A0  // Sensor izquierdo
+#define IR_DERECHO   A1  // Sensor derecho
 
-AF_DCMotor motorI(2);  // Motor Izquierdo
-AF_DCMotor motorD(1);  // Motor Derecho
+AF_DCMotor motorI(2, MOTOR12_1KHZ);  // Motor Izquierdo
+AF_DCMotor motorD(3, MOTOR34_1KHZ);  // Motor Derecho
 
 float Kp = 3.3;  // Coeficiente Proporcional
 float Ki = 0.0;  // Coeficiente Integral
@@ -50,6 +50,7 @@ void loop() {
 
 void detectarCasa() {
   int distancia_casa = sonar.ping_cm();
+  Serial.println(distancia_casa);
   if (distancia_casa < 20 && !casa_detectada && distancia_casa != 0) {
     contador++;
     casa_detectada = true;

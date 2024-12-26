@@ -51,23 +51,23 @@ void loop() {
       case 'I':  // Cerrar la garra
         closeGarra();
         break;
-      case 'H':  // Mover la base hacia adelante
-        moveBaseForward();
+      case 'D':  // Mover la base hacia adelante
+        girarBaseDerecha();
         break;
-      case 'J':  // Mover la base hacia atrás
-        moveBaseBackward();
+      case 'A':  // Mover la base hacia atrás
+        girarBaseIzquierda();
         break;
-      case '3':  // Mover el hombro hacia adelante
-        moveHombroForward();
+      case 'W':  // Mover el hombro hacia adelante
+        subirBrazo();
         break;
-      case '4':  // Mover el hombro hacia atrás
-        moveHombroBackward();
+      case 'M':  // Mover el hombro hacia atrás
+        bajarBrazo();
         break;
-      case '5':  // Mover el codo hacia adelante
-        moveCodoForward();
+      case 'H':  // Mover el codo hacia adelante
+        estirarCodo();
         break;
-      case '6':  // Mover el codo hacia atrás
-        moveCodoBackward();
+      case 'J':  // Mover el codo hacia atrás
+        recogerCodo();
         break;
     }
   }
@@ -97,24 +97,24 @@ void backward() {
 
 void left() {
   motorD1.setSpeed(255);  //Define maximum velocity|
-  motorD1.run(FORWARD);   //rotate the motor clockwise
+  motorD1.run(BACKWARD);   //rotate the motor clockwise
   motorD2.setSpeed(255);  //Define maximum velocity|
-  motorD2.run(FORWARD);   //rotate the motor clockwise
+  motorD2.run(BACKWARD);   //rotate the motor clockwise
   motorI1.setSpeed(255);  //Define maximum velocity
-  motorI1.run(BACKWARD);  //rotate the motor clockwise
+  motorI1.run(FORWARD);  //rotate the motor clockwise
   motorI2.setSpeed(255);  //Define maximum velocity
-  motorI2.run(BACKWARD);  //rotate the motor clockwise
+  motorI2.run(FORWARD);  //rotate the motor clockwise
 }
 
 void right() {
   motorD1.setSpeed(255);  //Define maximum velocity|
-  motorD1.run(BACKWARD);  //rotate the motor clockwise
+  motorD1.run(FORWARD);  //rotate the motor clockwise
   motorD2.setSpeed(255);  //Define maximum velocity|
-  motorD2.run(BACKWARD);  //rotate the motor clockwise
+  motorD2.run(FORWARD);  //rotate the motor clockwise
   motorI1.setSpeed(255);  //Define maximum velocity
-  motorI1.run(FORWARD);   //rotate the motor clockwise
+  motorI1.run(BACKWARD);   //rotate the motor clockwise
   motorI2.setSpeed(255);  //Define maximum velocity
-  motorI2.run(FORWARD);   //rotate the motor clockwise
+  motorI2.run(BACKWARD);   //rotate the motor clockwise
 }
 
 void stop() {
@@ -129,33 +129,33 @@ void stop() {
 }
 
 void openGarra() {
-  garraServo.write(garraServo.read() + 1);
+  garraServo.write(garraServo.read() - 1);
 }
 
 void closeGarra() {
-  garraServo.write(garraServo.read() - 1);  // Ajusta la posición del servo para cerrar la garra
+  garraServo.write(garraServo.read() + 1);  // Ajusta la posición del servo para cerrar la garra
 }
 
-void moveBaseForward() {
-  baseServo.write(baseServo.read() + 1);
+void girarBaseDerecha() {
+  baseServo.write(baseServo.read() - 5);
 }
 
-void moveBaseBackward() {
-  baseServo.write(baseServo.read() - 1);
+void girarBaseIzquierda() {
+  baseServo.write(baseServo.read() + 5);
 }
 
-void moveHombroForward() {
-  hombroServo.write(hombroServo.read() + 1);  // Ajusta la posición del servo del hombro hacia adelante
+void subirBrazo() {
+  hombroServo.write(hombroServo.read() - 5);  // Ajusta la posición del servo del hombro hacia adelante
 }
 
-void moveHombroBackward() {
-  hombroServo.write(hombroServo.read() - 1);  // Ajusta la posición del servo del hombro hacia atrás
+void bajarBrazo() {
+  hombroServo.write(hombroServo.read() + 5);  // Ajusta la posición del servo del hombro hacia atrás
 }
 
-void moveCodoForward() {
-  codoServo.write(codoServo.read() + 1);  // Ajusta la posición del servo del codo hacia adelante
+void estirarCodo() {
+  codoServo.write(codoServo.read() + 5);  // Ajusta la posición del servo del codo hacia adelante
 }
 
-void moveCodoBackward() {
-  codoServo.write(codoServo.read() - 1);  // Ajusta la posición del servo del codo hacia atrás
+void recogerCodo() {
+  codoServo.write(codoServo.read() - 5);  // Ajusta la posición del servo del codo hacia atrás
 }
