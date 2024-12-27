@@ -62,5 +62,6 @@ void loop() {
 void leerSensores() {
   for (int i = 0; i < NUM_SENSORES; i++) {
     valoresSensores[i] = analogRead(pinesSensores[i]);
+    Serial.println(valoresSensores[i]);
   }
 }
